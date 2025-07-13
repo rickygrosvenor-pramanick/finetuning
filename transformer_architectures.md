@@ -23,14 +23,13 @@ Task: Classify “The food was amazing!”
 ### Mathematical Details
 
 **Self-Attention**  
-Given token embeddings \(X \in \mathbb{R}^{n \times d}\):  
-\[
-\begin{aligned}
-Q &= XW^Q, \quad K = XW^K, \quad V = XW^V \\
-\text{Attention}(Q,K,V) &= \text{softmax}\Bigl(\frac{QK^\top}{\sqrt{d_k}} + M\Bigr)\,V
-\end{aligned}
-\]  
-- \(M\): mask matrix (\(0\) for visible, \(-\infty\) for masked positions)  
+Given token embeddings $X \in \mathbb{R}^{n \times d}$:  
+$$
+\\begin{aligned}
+Q &= XW^Q, \\quad K = XW^K, \\quad V = XW^V \\n\\text{Attention}(Q,K,V) &= \\text{softmax}\\left(\\frac{QK^\\top}{\\sqrt{d_k}} + M\\right)V
+\\end{aligned}
+$$  
+- $M$: mask matrix (0 for visible, -∞ for masked positions)  
 - For MLM, random tokens are replaced by `[MASK]` during pre-training.
 
 **Keywords**: MLM, `[CLS]`, NSP, BERT, RoBERTa, DistilBERT
@@ -54,19 +53,19 @@ Prompt: “Once upon a time”
 ### Mathematical Details
 
 **Causal Masking**  
-Define mask \(M\) where  
-\[
+Define mask $M$ where  
+$$
 M_{ij} = 
-\begin{cases}
-0 & i \ge j,\\
--\infty & i < j.
-\end{cases}
-\]  
+\\begin{cases}
+0 & i \ge j,\\\\
+-\\infty & i < j.
+\\end{cases}
+$$  
 Then  
-\[
-\text{Attn}(Q,K,V) = \text{softmax}\Bigl(\frac{QK^\top}{\sqrt{d_k}} + M\Bigr)\,V
-\]  
-ensuring token \(i\) cannot see tokens \(>i\).
+$$
+\\text{Attn}(Q,K,V) = \\text{softmax}\\left(\\frac{QK^\\top}{\\sqrt{d_k}} + M\\right)V
+$$  
+ensuring token $i$ cannot see tokens $>i$.
 
 **Keywords**: Causal Masking, GPT, Autoregressive, Top-k Sampling
 
@@ -90,13 +89,13 @@ Translate: “Bonjour” → “Hello”
 ### Mathematical Details
 
 **Cross-Attention**  
-Given encoder outputs \(E\) and decoder inputs \(D\):  
-\[
-\begin{aligned}
-Q_d &= D W^Q, \quad K_e = E W^K, \quad V_e = E W^V,\\
-\text{CrossAttn}(Q_d,K_e,V_e) &= \text{softmax}\!\Bigl(\tfrac{Q_d K_e^\top}{\sqrt{d_k}}\Bigr)\,V_e.
-\end{aligned}
-\]
+Given encoder outputs $E$ and decoder inputs $D$:  
+$$
+\\begin{aligned}
+Q_d &= D W^Q, \\quad K_e = E W^K, \\quad V_e = E W^V,\\\\
+\\text{CrossAttn}(Q_d,K_e,V_e) &= \\text{softmax}\\left(\\frac{Q_d K_e^\\top}{\\sqrt{d_k}}\\right)V_e.
+\\end{aligned}
+$$
 
 **Keywords**: T5, BART, PEGASUS, Cross-Attention, Seq2Seq
 
@@ -138,4 +137,4 @@ Q_d &= D W^Q, \quad K_e = E W^K, \quad V_e = E W^V,\\
 
 ---
 
-*Use this as your go-to Transformer encyclopedia for design, fine-tuning, and deployment.*  
+*Use this as your go-to Transformer encyclopedia for design, fine-tuning, and deployment.*
