@@ -25,9 +25,10 @@ Task: Classify “The food was amazing!”
 **Self-Attention**  
 Given token embeddings $X \in \mathbb{R}^{n \times d}$:  
 $$
-\\begin{aligned}
-Q &= XW^Q, \\quad K = XW^K, \\quad V = XW^V \\n\\text{Attention}(Q,K,V) &= \\text{softmax}\\left(\\frac{QK^\\top}{\\sqrt{d_k}} + M\\right)V
-\\end{aligned}
+\begin{aligned}
+Q &= XW^Q, \quad K = XW^K, \quad V = XW^V \\
+\text{Attention}(Q,K,V) &= \text{softmax}\left(\frac{QK^\top}{\sqrt{d_k}} + M\right)V
+\end{aligned}
 $$  
 - $M$: mask matrix (0 for visible, -∞ for masked positions)  
 - For MLM, random tokens are replaced by `[MASK]` during pre-training.
